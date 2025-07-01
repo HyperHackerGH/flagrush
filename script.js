@@ -1,6 +1,10 @@
 const flagelem = document.getElementById("flag")
 
 function newflag() {
+    for (let i of document.getElementsByClassName("option")) {
+        i.classList.remove("correct")
+    }
+
     const keys = Object.keys(flags)
     const correctindex = Math.floor(Math.random() * keys.length)
     const correctkey = keys[correctindex]
@@ -32,3 +36,18 @@ function newflag() {
 }
 
 newflag()
+
+for (let i of document.getElementsByClassName("option")) {
+    i.addEventListener("click", () => {
+        if (i.classList.contains("correct")) {
+            const scoreelem = document.getElementById("score")
+            scoreelem.innerHTML = "Score: " + (parseInt(scoreelem.innerHTML.split(": ")[1]) + 1)
+
+            newflag()
+        }
+
+        else {
+            alert("lose")
+        }
+    })
+}
