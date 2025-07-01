@@ -32,7 +32,6 @@ function newflag(resize = false) {
         
         currentflag = correctkey
         flagelem.src = "https://flagcdn.com/w" + size + "/" + correctkey + ".png"
-        // flagelem.src = "https://flagcdn.com/h240/" + correctkey + ".png"
         
         const used = [correctkey]
 
