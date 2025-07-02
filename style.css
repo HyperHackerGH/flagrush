@@ -26,7 +26,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%
+    width: 100%;
+    display: none
 }
 
 #flag {
@@ -35,12 +36,12 @@ body {
     margin-bottom: 30px
 }
 
-#score {
+#score, #finalscore, #timer {
     font-size: 30px;
     margin-bottom: 30px
 }
 
-.option {
+.option, #start, #restart {
     width: 200px;
     height: 40px;
     border: 3px solid #fff;
@@ -52,4 +53,19 @@ body {
     background: #2c2e46;
     color: #fff;
     display: inline
+}
+
+#menu, #end {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#end {
+    display: none
+}
+
+h1 {
+    font-size: 50px
 }

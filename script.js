@@ -2,6 +2,10 @@ const flagelem = document.getElementById("flag")
 
 const sizes = [160, 320, 640, 1280, 2560]
 var currentflag = ""
+var score = 0
+var timer = 30
+
+document.getElementById("restart").addEventListener("click", () => {location.reload()})
 
 function getsize() {
     let w = window.innerWidth
@@ -13,6 +17,44 @@ function getsize() {
 
     return s
 }
+
+function end() {
+    document.getElementById("end").style.display = "block"
+    document.getElementById("container").style.display = "none"
+    document.getElementById("menu").style.display = "none"
+
+    document.getElementById("finalscore").innerHTML = "Score: " + score
+}
+
+document.getElementById("start").addEventListener("click", () => {
+    document.getElementById("menu").style.display = "none"
+    document.getElementById("container").style.display = "block"
+
+    newflag()
+
+    var total = 30 * 1000
+    var interval = 50
+
+    newflag()
+
+    var countdown = setInterval(() => {
+        total -= interval
+
+        if (total <= 0) {
+            clearInterval(countdown)
+            document.getElementById("timer").innerHTML = "Time: 0.000"
+            end()
+        }
+        
+        else {
+            var seconds = Math.floor(total / 1000)
+            var millis = total % 1000
+            var display = "Time: " + seconds + "." + millis.toString()
+
+            document.getElementById("timer").innerHTML = display
+        }
+    }, interval)
+})
 
 var size = getsize()
 
@@ -65,13 +107,10 @@ for (let i of document.getElementsByClassName("option")) {
     i.addEventListener("click", () => {
         if (i.classList.contains("correct")) {
             const scoreelem = document.getElementById("score")
-            scoreelem.innerHTML = "Score: " + (parseInt(scoreelem.innerHTML.split(": ")[1]) + 1)
-
-            newflag()
+            score++
+            scoreelem.innerHTML = "Score: " + score
         }
 
-        else {
-            alert("lose")
-        }
+        newflag()
     })
 }
