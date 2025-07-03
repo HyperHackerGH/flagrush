@@ -32,7 +32,7 @@ document.getElementById("start").addEventListener("click", () => {
 
     newflag()
 
-    var total = 30 * 1000
+    var total = timer * 1000
     var interval = 50
 
     newflag()
